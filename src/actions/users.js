@@ -1,12 +1,12 @@
-import request from "superagent";
+import request from 'superagent';
 
-export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const SIGNUP_ERROR = "SIGNUP_ERROR";
-export const LOGIN_ERROR = "LOGIN_ERROR";
-export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const SIGNUP_ERROR = 'SIGNUP_ERROR';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
-const baseUrl = "http://localhost:4000";
+const baseUrl = 'https://ancient-springs-50639.herokuapp.com/';
 
 function signupSuccess(payload) {
   return {
@@ -38,7 +38,7 @@ function loginError(payload) {
 
 export const signup = (name, email, password) => dispatch => {
   request
-    .post(`${baseUrl}/user`)
+    .post(`${baseUrl}/api/user`)
     .send({ name, email, password })
     .then(response => {
       const action = signupSuccess(response.body);
@@ -46,10 +46,10 @@ export const signup = (name, email, password) => dispatch => {
     })
     .catch(err => {
       console.error(err);
-      console.log("URL SILLY", err.response);
+      console.log('URL SILLY', err.response);
       dispatch(
         signupError({
-          // url: err.response.req.url,
+          url: err.response.req.url,
           message: err.response.body.message
         })
       );
@@ -58,17 +58,17 @@ export const signup = (name, email, password) => dispatch => {
 
 export const login = (email, password) => dispatch => {
   request
-    .post(`${baseUrl}/login`)
+    .post(`${baseUrl}/api/login`)
     .send({ email, password })
     .then(response => {
-      console.log("NAME", response.body);
+      console.log('NAME', response.body);
       const action = loginSuccess(response.body);
 
       // Save login data to local storage to persist the login state
-      localStorage.setItem("userId", action.payload.userId);
-      localStorage.setItem("name", action.payload.name);
-      localStorage.setItem("email", action.payload.email);
-      localStorage.setItem("jwt", action.payload.jwt);
+      localStorage.setItem('userId', action.payload.userId);
+      localStorage.setItem('name', action.payload.name);
+      localStorage.setItem('email', action.payload.email);
+      localStorage.setItem('jwt', action.payload.jwt);
 
       dispatch(action);
 

@@ -1,13 +1,13 @@
-import request from "superagent";
+import request from 'superagent';
 
-export const ALL_ADS = "ALL_ADS";
-export const NEW_AD = "NEW_AD";
-export const AD_FETCHED = "AD_FETCHED";
-export const AD_UPDATE_SUCCESS = "AD_UPDATE_SUCCESS";
-export const AD_DELETE_SUCCESS = "AD_DELETE_SUCCESS";
-export const OFFER_MADE = "OFFER_MADE";
+export const ALL_ADS = 'ALL_ADS';
+export const NEW_AD = 'NEW_AD';
+export const AD_FETCHED = 'AD_FETCHED';
+export const AD_UPDATE_SUCCESS = 'AD_UPDATE_SUCCESS';
+export const AD_DELETE_SUCCESS = 'AD_DELETE_SUCCESS';
+export const OFFER_MADE = 'OFFER_MADE';
 
-const baseUrl = "http://localhost:4000";
+const baseUrl = 'https://ancient-springs-50639.herokuapp.com/';
 
 function allAds(payload) {
   return {
@@ -55,7 +55,7 @@ export const getAds = () => (dispatch, getState) => {
   const { ads } = state;
 
   if (!ads.length) {
-    request(`${baseUrl}/gbad`)
+    request(`${baseUrl}/api/gbad`)
       .then(response => {
         const action = allAds(response.body);
         dispatch(action);
@@ -65,11 +65,11 @@ export const getAds = () => (dispatch, getState) => {
 };
 
 export const createAd = data => dispatch => {
-  const jwt = localStorage.getItem("jwt");
+  const jwt = localStorage.getItem('jwt');
 
   request
-    .post(`${baseUrl}/gbad`)
-    .set("Authorization", `Bearer ${jwt}`)
+    .post(`${baseUrl}/api/gbad`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => {
       const action = newAd(response.body);
@@ -82,7 +82,7 @@ export const loadAd = id => (dispatch, getState) => {
   const state = getState().ad;
   if (state && state.id === id) return;
 
-  request(`${baseUrl}/gbad/${id}`)
+  request(`${baseUrl}/api/gbad/${id}`)
     .then(response => {
       dispatch(adFetched(response.body));
     })
@@ -90,11 +90,11 @@ export const loadAd = id => (dispatch, getState) => {
 };
 
 export const updateAd = (id, data) => dispatch => {
-  const jwt = localStorage.getItem("jwt");
+  const jwt = localStorage.getItem('jwt');
 
   request
-    .put(`${baseUrl}/gbad/${id}`)
-    .set("Authorization", `Bearer ${jwt}`)
+    .put(`${baseUrl}/api/gbad/${id}`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => {
       dispatch(adUpdateSuccess(response.body));
@@ -103,11 +103,11 @@ export const updateAd = (id, data) => dispatch => {
 };
 
 export const deleteAd = id => dispatch => {
-  const jwt = localStorage.getItem("jwt");
+  const jwt = localStorage.getItem('jwt');
 
   request
-    .delete(`${baseUrl}/gbad/${id}`)
-    .set("Authorization", `Bearer ${jwt}`)
+    .delete(`${baseUrl}/api/gbad/${id}`)
+    .set('Authorization', `Bearer ${jwt}`)
     .then(_ => {
       dispatch(adDeleteSuccess(id));
     })
@@ -115,7 +115,7 @@ export const deleteAd = id => dispatch => {
 };
 
 export const makeOffer = () => dispatch => {
-  localStorage.setItem("offerMade", true);
+  localStorage.setItem('offerMade', true);
 
   dispatch(offerMade());
 };

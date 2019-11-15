@@ -1,8 +1,8 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 export default function SignupForm(props) {
   return (
@@ -52,7 +52,7 @@ export default function SignupForm(props) {
           />
 
           <Grid item>
-            {props.user.url && props.user.url.includes("user") && (
+            {props.user.url && props.user.url.includes('user') && (
               <p className="error-msg">{props.user.message}</p>
             )}
           </Grid>
@@ -66,7 +66,7 @@ export default function SignupForm(props) {
           <Grid item>
             {props.user.id && (
               <p>
-                User account is created successfully! You can{" "}
+                User account is created successfully! You can{' '}
                 <Link to="login">login here</Link>
               </p>
             )}
