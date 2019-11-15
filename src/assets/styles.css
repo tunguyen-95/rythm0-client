@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap");
+
+.ad-list {
+  padding: 1em;
+  margin-top: 20px !important;
+}
+
+.search-container {
+  margin-top: 64px !important;
+  background: url("https://orawoolave.files.wordpress.com/2019/01/musical-instruments-getty.jpg")
+    no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 450px;
+  color: white;
+}
+
+.search-container .MuiGrid-item {
+  text-align: center !important;
+  color: #373434 !important;
+}
+
+.promotion {
+  color: antiquewhite;
+  font-family: "Gloria Hallelujah", cursive !important;
+  text-align: center;
+}
+
+.create-event-container {
+  margin-top: 75px !important;
+}
+
+.login-container {
+  margin-top: 75px !important;
+}
+
+.img-detail {
+  height: 300px;
+}
+
+.ad-details {
+  margin-top: 75px;
+}
+
+.ad-details img {
+  height: 100% !important;
+}
+
+.ad-details .MuiGrid-item {
+  padding: 1em;
+}
+
+.info {
+  margin-left: 30px !important;
+}
+
+.bid {
+  width: 150px !important;
+  height: 30px !important;
+}
+
+.bid-btn {
+  font-weight: bold !important;
+  margin-top: 8px !important;
+  height: 40px !important;
+}
+
+.error-msg {
+  color: red;
+}
